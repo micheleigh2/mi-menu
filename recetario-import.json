@@ -1,0 +1,999 @@
+{
+  "meals": [
+    {
+      "id": "e7ba667b330",
+      "name": "Yogurt Griego Con Frutos Secos",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Sirve yogurt griego natural en un bowl, añade un puñado de frutos secos",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510047"
+    },
+    {
+      "id": "18336fa2f9d",
+      "name": "Avena (Porridge) Con Berries",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Cocina avena integral con agua o leche. Sirve en un bol con un puñado de arándanos o frambuesas.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510103"
+    },
+    {
+      "id": "cfc32f58f9a",
+      "name": "Tostada Integral Con Palta",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Tuesta 1-2 rebanadas de pan integral. Muele palta y úntala, terminando con sal, limón y (opcional) semillas de sésamo.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510124"
+    },
+    {
+      "id": "54a7f7c6ab0",
+      "name": "Huevos Revueltos Con Tomate Y Orégano",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Bate 2 huevos y cocínalos en una sartén con aceite de oliva. Cuando casi estén listos, añade medio tomate picado y una pizca de orégano seco.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510149"
+    },
+    {
+      "id": "ba9004eef62",
+      "name": "Tostada Integral Con Queso Fresco Y Orégano",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Tuesta el pan y sirve con láminas de queso fresco o quesillo, un chorrito de aceite de oliva y orégano.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510168"
+    },
+    {
+      "id": "a2ed0f1843c",
+      "name": "Omelette De Espinaca Y Queso Feta",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Bate 2 huevos. Viértelos en la sartén y, antes de doblar, rellena con un puñado de espinacas frescas y queso feta desmoronado.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510188"
+    },
+    {
+      "id": "3683f520b90",
+      "name": "Avena \"Trasnochada\" (Overnight Oats)",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "En un frasco, mezcla avena, semillas de chía, yogurt griego y leche. Deja reposar toda la noche en el refrigerador. Sirve frío o caliente. Puedes agregar una cucharada de cacao en polvo y gotitas de endulzante y tienes un desayuno chocolatoso",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510215"
+    },
+    {
+      "id": "eea95b5c5e0",
+      "name": "Huevos Pochados Sobre Tostada",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Hierve agua con un chorrito de vinagre. Haz un remolino y rompe un huevo en el centro; cocina 3-4 min. Sirve sobre una tostada integral (opcional: con palta).",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510235"
+    },
+    {
+      "id": "419cb4d94b5",
+      "name": "Queso Cottage Con Pepino Y Tomate Cherry",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Sirve queso cottage en un bol, añade pepino picado y tomates cherry en mitades. Aliña con aceite de oliva y pimienta.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510255"
+    },
+    {
+      "id": "3463dad91a7",
+      "name": "Huevo Duro Sobre Tostada Integral",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Tuesta el pan, añade unas gotas de aceite de oliva y sirve con 1-2 huevos duros cortados en láminas.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510272"
+    },
+    {
+      "id": "b2b1797e79c",
+      "name": "Shakshuka Rápida (Individual)",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "En una sartén pequeña, calienta media taza de salsa de tomate (natural, sin azúcar). Haz dos huecos y rompe dos huevos. Tapa y cocina 5-7 min, hasta que la clara esté cocida.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510295"
+    },
+    {
+      "id": "6e3bd27143b",
+      "name": "Tostada Integral Con Hummus Y Pepino",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Tuesta el pan y úntalo con una capa gruesa de hummus. Termina con láminas finas de pepino.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510311"
+    },
+    {
+      "id": "e8303d600fa",
+      "name": "Ricotta Batida Con Canela",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Bate queso ricotta (idealmente entero) hasta que esté cremoso. Sirve en un bowl con canela en polvo.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510328"
+    },
+    {
+      "id": "ab457d15654",
+      "name": "Batido Verde Mediterráneo",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Licúa espinacas frescas, apio, limon, jengibre y agua. Agrega gotitas de stevia para aportar dulzor",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510354"
+    },
+    {
+      "id": "e209a6ffcd6",
+      "name": "Huevos Revueltos Con Salmón Ahumado O Jamon",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Prepara huevos revueltos cremosos. Justo al apagar el fuego, añade trocitos de salmón ahumado y eneldo fresco (opcional). =",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510376"
+    },
+    {
+      "id": "61916318125",
+      "name": "Palta Rellena Con Un Huevo Duro Picado",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Parte una palta por la mitad y retira el cuesco. En un bol pequeño, muele un huevo duro cocido y mézclalo con una cucharada de mayonesa o yogurt griego, sal y pimienta. Rellena las mitades de palta con la mezcla.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510419"
+    },
+    {
+      "id": "045564f1544",
+      "name": "Omelette De Champiñones Salteados",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Corta champiñones en láminas y saltéalos en una sartén con mantequilla y ajo hasta que se doren. Prepara un omelette de 2 huevos y, antes de doblarlo, rellénalo con los champiñones salteados.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510445"
+    },
+    {
+      "id": "861e6c9e9dd",
+      "name": "Paila De Huevos Con Tomate Y Cebolla En Cubitos",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "En una paila o sartén pequeño, sofríe media cebolla y medio tomate picados en cubos pequeños hasta que estén blandos. Haz un espacio en el centro, vierte un chorrito de aceite y casca 1 o 2 huevos. Revuelve hasta que estén cocidos.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510474"
+    },
+    {
+      "id": "9baca731d62",
+      "name": "Omelette Relleno De Pollo Desmenuzado",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Usa pollo cocido del día anterior y desmenúzalo. Prepara un omelette de 2 huevos y rellénalo con el pollo antes de doblarlo. Puedes añadir un poco de queso para más sabor.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510497"
+    },
+    {
+      "id": "2b0869f1759",
+      "name": "Huevos A La Copa",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Hierve agua en una olla pequeña. Introduce los huevos con cuidado y cocina por exactamente 5 minutos para una yema líquida o 6 para una yema cremosa. Retíralos y sírvelos inmediatamente en un vasito para huevos (\"huevo a la copa\").",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510524"
+    },
+    {
+      "id": "c7ef0accb67",
+      "name": "Champiñones Salteados Con Un Huevo Frito Encima",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Saltea champiñones laminados en aceite de oliva con ajo y perejil. Sírvelos en un plato y corona con un huevo frito recién hecho, de modo que la yema líquida caiga sobre ellos al cortarla.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510549"
+    },
+    {
+      "id": "570d28313c4",
+      "name": "Omelette De Pimentón Y Cebolla",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Pica finamente un trozo de pimentón y media cebolla. Sofríelos en una sartén hasta que estén caramelizados. Úsalos como relleno para un omelette de 2 huevos.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510571"
+    },
+    {
+      "id": "7212e345cdf",
+      "name": "Huevos Revueltos Con Merkén Para Un Toque Picante",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Bate 2-3 huevos y añade una pizca de sal y media cucharadita de merkén. Revuelve bien y cocínalos en una sartén con mantequilla para un desayuno con un toque ahumado y picante.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510596"
+    },
+    {
+      "id": "d2f40db8ed0",
+      "name": "Yogurt Griego Natural O Protein Con Un Puñado De Frutos Secos",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Sirve una porción de yogurt griego o protein (sin azúcar) en un bol. Añade un mix de almendras, nueces y avellanas europeas por encima para un toque crujiente.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510620"
+    },
+    {
+      "id": "6e0c83a0585",
+      "name": "Pudding De Chía Hecho Con Leche De Coco Y Cacao En Polvo",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "En un frasco, mezcla 3 cucharadas de semillas de chía, 1 taza de leche de coco (de lata, para más cremosidad), 1 cucharada de cacao en polvo sin azúcar y endulzante a gusto. Revuelve bien y refrigera por al menos 4 horas o toda la noche.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510651"
+    },
+    {
+      "id": "789a9cdf8c7",
+      "name": "Salmón Ahumado Con Pasta De Yogurt Marca San Benito (Tipo Queso Crema)",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Extiende láminas de salmón ahumado. Unta una capa fina de la pasta de yogurt San Benito sobre cada lámina. Puedes enrollarlas o servirlas extendidas sobre un plato.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510675"
+    },
+    {
+      "id": "9d1bc880f36",
+      "name": "Yogurt Griego Con Un Puñado De Berries + Chips Cacao Amargo O Cacao Nibs",
+      "category": "Desayuno",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "En un bol, sirve yogurt griego sin azúcar. Agrega un puñado de frambuesas, arándanos =",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510702"
+    },
+    {
+      "id": "4d5cd13d89d",
+      "name": "Puñado De Frutos Secos",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Un puñado pequeño de almendras, nueces, nueces de macadamia, etc",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510718"
+    },
+    {
+      "id": "b92ef6854a9",
+      "name": "Bastones De Verdura Con Yogurmet",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "bastones de apio, pepino, zapallo italiano, zanahoria o la verdura de tu preferencia en pasta de yogurt yogurmet",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510737"
+    },
+    {
+      "id": "005ba203e33",
+      "name": "Bastones De Pepino Con Guacamole",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Usa rodajas gruesas o bastones de pepino para \"dipear\" en guacamole.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510753"
+    },
+    {
+      "id": "6562ff6ddbd",
+      "name": "\"Chips\" De Kale",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Hojas de kale secas, rociadas con aceite de oliva y sal. Hornea a baja temperatura (150°C / 300°F) hasta que estén crujientes.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510789"
+    },
+    {
+      "id": "855509e47d2",
+      "name": "Rollitos De Jamón Y Palmitos",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "palmitos enrollados en una lamina de jamón (pavo o serrano)",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510807"
+    },
+    {
+      "id": "89bd69b4a22",
+      "name": "Tomatitos Cherry Con Mozzarella (Bocconcini)",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Intercala tomates cherry y bolitas de mozzarella en un palillo (mondadientes).",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510825"
+    },
+    {
+      "id": "ae905654b8d",
+      "name": "Jerky (Carne Seca)",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Asegúrate de comprar uno que no tenga azúcar añadido en sus ingredientes, sino púedes hacerlo tu mismo con tiritas de pollo con un poco de soya, en el horno, a 200 grados hasta que esten secos",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510859"
+    },
+    {
+      "id": "7c6f67830ae",
+      "name": "Pepinillos (Encurtidos)",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Un par de pepinillos en vinagre (asegúrate que no sean \"agridulces\" con azúcar)",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510877"
+    },
+    {
+      "id": "af3d10eee9a",
+      "name": "Una Fruta",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "manzana, pera, durazno, damasco, uvas, lo que prefieras",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510892"
+    },
+    {
+      "id": "d326ab62287",
+      "name": "Manzana En Láminas Con Mantequilla De Almendra",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Corta una manzana y úntala con mantequilla de almendras (sin azúcar).",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510910"
+    },
+    {
+      "id": "cc753aa3ee4",
+      "name": "Dátiles Rellenos Con Una Nuez",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Abre un dátil, saca el cuesco y pon una nuez adentro.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510926"
+    },
+    {
+      "id": "a60d6ed5076",
+      "name": "Dátiles Con Mantequilla De Maní Natural",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Similar al anterior, pero rellenos con mantequilla de maní",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510943"
+    },
+    {
+      "id": "71ae3e79b0b",
+      "name": "Mix De Berries",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Un bol pequeño de arándanos, frambuesas y/o moras.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.510966"
+    },
+    {
+      "id": "51fd7b82d1f",
+      "name": "Rodajas De Plátano Con Mantequilla De Maní",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Corta medio plátano y úntalo.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511047"
+    },
+    {
+      "id": "b3e91e0dab4",
+      "name": "Yogurt Natural Solo O Con Berries (Congeladas O Frías)",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Una porción de yogurt natural acompañado de tus frutas preferidas. Pedes agregar un puñado de frutos secos",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511073"
+    },
+    {
+      "id": "0a21a3a0475",
+      "name": "Huevos Duros",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Ten 1 o 2 huevos duros cocidos en el refrigerador. Cómelos con sal.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511090"
+    },
+    {
+      "id": "b28d566e2cd",
+      "name": "Queso De Cabra Sobre Galleta Integral",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Una galleta de grano entero (tipo salmas, o galletas de arroz o maiz) con queso de cabra.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511109"
+    },
+    {
+      "id": "c1c261cdc76",
+      "name": "Palitos De Verdura Con Hummus",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "puede ser zanahoria, pepino, apio, zapallo italiano, etc. con el hummus de tu preferencia",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511128"
+    },
+    {
+      "id": "0246a15abe4",
+      "name": "Palitos De Verdura Con \"Babaganush\" (Puré De Berenjena)",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "puede ser zanahoria, pepino, apio, zapallo italiano, etc. con pure de berenjenas",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511168"
+    },
+    {
+      "id": "8676e5ca424",
+      "name": "Aceitunas",
+      "category": "Snack",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Un puñado pequeño de tus aceitunas favoritas (verdes o negras). =",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511185"
+    },
+    {
+      "id": "9aa8d1e7b47",
+      "name": "Salmón Al Horno Con Limón Y Eneldo",
+      "category": "Pescado",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Hornea un filete de salmón a 180°C (350°F) por 15 min, sazonado con aceite de oliva, rodajas de limón y eneldo fresco.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511210"
+    },
+    {
+      "id": "75a9dbf52f5",
+      "name": "Merluza Al Horno Con Tomates Y Aceitunas",
+      "category": "Pescado",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "En una fuente, pon filetes de merluza sobre una cama de tomates cherry y aceitunas. Hornea 20 min.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511231"
+    },
+    {
+      "id": "30c3f62eddc",
+      "name": "Atún Sellado A La Plancha Con Ensalada Verde",
+      "category": "Pescado",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Sella un lomo de atún fresco en una sartén muy caliente (1 min por lado). Sirve sobre rúcula y lechuga.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511253"
+    },
+    {
+      "id": "471dfeebfca",
+      "name": "Atun En Lata Sobre Ensalada De Porotos Verdes",
+      "category": "Legumbres",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Mezcla porotos verdes cocidos, cebolla morada y tomates cherry. Sirve con atun de lata encima.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511276"
+    },
+    {
+      "id": "6f560bcca64",
+      "name": "Brochetas De Camarones Al Ajillo",
+      "category": "Otro",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Ensarta camarones en un palo de brocheta. Pincela con aceite de oliva, ajo picado y perejil. Cocina a la plancha 2-3 min por lado.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511306"
+    },
+    {
+      "id": "eb3abb1ed54",
+      "name": "Pescado Blanco (Reineta) Al Vapor",
+      "category": "Pescado",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Cocina un filete al vapor (5-8 min). Sirve con un chorro generoso de aceite de oliva extra virgen, limón y perejil.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511335"
+    },
+    {
+      "id": "ddf0adc6031",
+      "name": "Salmón A La Plancha Con Salsa Tzatziki",
+      "category": "Pescado",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Cocina el salmón a la plancha. Sirve con Tzatziki (yogurt griego, pepino rallado, ajo, limón).",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511355"
+    },
+    {
+      "id": "8032a3743a6",
+      "name": "Choritos (Mejillones) Al Vapor",
+      "category": "Pescado",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "En una olla grande, pon los choritos limpios con un dedo de vino blanco, ajo y perejil. Tapa y cocina 5-7 min a fuego alto, hasta que se abran.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511380"
+    },
+    {
+      "id": "9a451011cdb",
+      "name": "Pescado Al \"Papillote\"",
+      "category": "Pescado",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Envuelve un filete de pescado (corvina, merluza) en papel aluminio con láminas de zapallo italiano, limón y hierbas. Hornea 20 min.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511402"
+    },
+    {
+      "id": "9528ddc2238",
+      "name": "Pasta Integral Con Camarones Y Tomate Cherry",
+      "category": "Pasta",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Saltea camarones con ajo y tomates cherry. Mezcla con pasta integral cocida (ej. espagueti) y albahaca fresca.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511425"
+    },
+    {
+      "id": "2023a468078",
+      "name": "Ensalada Niçoise (Modificada)",
+      "category": "Ensalada",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Base de lechuga, atún en lata, huevo duro, porotos verdes cocidos, tomates y aceitunas. Aliño de aceite y vinagre.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511448"
+    },
+    {
+      "id": "9caafbea3f2",
+      "name": "Brochetas De Pollo (Souvlaki)",
+      "category": "Pollo",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Ensarta cubos de pollo (previamente marinados en limón y orégano) con trozos de pimentón y cebolla morada. Ásalos.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511473"
+    },
+    {
+      "id": "d6a876e45eb",
+      "name": "Pollo Al Horno Con Hierbas",
+      "category": "Pollo",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Hornea tutos (muslos) de pollo sobre una cama de verduras (zanahoria, cebolla) con romero y tomillo.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511494"
+    },
+    {
+      "id": "5f39f4a884f",
+      "name": "Pollo Salteado Con Brócoli Y Almendras",
+      "category": "Pollo",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Saltea trozos de pollo en un wok, añade brócoli y termina con almendras fileteadas y salsa de soya.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511529"
+    },
+    {
+      "id": "448a1c9e131",
+      "name": "Tutos De Pollo Asados Con Limón Y Aceitunas",
+      "category": "Pollo",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Hornea tutos de pollo con rodajas de limón, aceitunas (verdes o negras) y un toque de vino blanco. =",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511553"
+    },
+    {
+      "id": "bedca87cafb",
+      "name": "\"Buddha Bowl\" Mediterráneo",
+      "category": "Legumbres",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "En un bowl: base de quinoa, garbanzos asados, palta, pepino y un aderezo de tahini (pasta de sésamo) y limón.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511576"
+    },
+    {
+      "id": "078b9a351d7",
+      "name": "Arroz Integral Con Verduras Salteadas",
+      "category": "Arroz",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Sirve arroz integral cocido con un salteado abundante de pimentones, zapallo italiano y champiñones.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511600"
+    },
+    {
+      "id": "1d14cfc7ffa",
+      "name": "Pimentones Asados Rellenos De Arroz Integral",
+      "category": "Arroz",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Rellena pimentones (morrones) con arroz integral cocido (mezclado con pasas y almendras, opcional) y hornéalos.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511632"
+    },
+    {
+      "id": "bd88d09595f",
+      "name": "Ratatouille",
+      "category": "Verduras",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Guiso francés de verduras: berenjena, zapallo italiano, pimentón y tomate, cocidos lentamente en aceite de oliva.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511667"
+    },
+    {
+      "id": "81f49a3bd75",
+      "name": "Berenjenas Al Horno Con Orégano",
+      "category": "Verduras",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Corta berenjenas en láminas gruesas, pincela con aceite de oliva y orégano, y ásalas hasta que estén blandas.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511691"
+    },
+    {
+      "id": "b15a72cbce2",
+      "name": "Zapallitos Italianos (Zucchini) Grillados",
+      "category": "Verduras",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Corta zapallitos a lo largo y ásalos en una plancha grill. Sirve con aceite de oliva, sal y los aliños de tu preferencia.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511717"
+    },
+    {
+      "id": "80b8f3738e3",
+      "name": "Coliflor Asada Entera (O En Trozos)",
+      "category": "Verduras",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Cubre una coliflor con aceite de oliva y especias (cúrcuma, comino, paprika) y un poco de mostaza o tahini. Ásala a 200°C (400°F) hasta que esté tierna y dorada.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511760"
+    },
+    {
+      "id": "6903c64c2f3",
+      "name": "Crema De Verduras (Puerros, Zapallo)",
+      "category": "Verduras",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Sofríe puerros, añade zapallo (calabaza) y caldo de verduras. Hierve 20 min y licúa (minipimer). Sirve con semillas.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511812"
+    },
+    {
+      "id": "1af77349dbf",
+      "name": "Moussaka (Pastel De Berenjenas) Simple",
+      "category": "Verduras",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Intercala capas de berenjena asada, carne molida (pavo o vacuno magro) con tomate, y hornea.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511836"
+    },
+    {
+      "id": "f8d3ca88a4d",
+      "name": "Ensalada Caprese",
+      "category": "Ensalada",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Rodajas de tomate maduro, queso mozzarella fresco (bocconcini) y hojas de albahaca fresca. Aliño de aceite de oliva.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511865"
+    },
+    {
+      "id": "3526a49c791",
+      "name": "Ensalada De Papas \"Saludable\"",
+      "category": "Ensalada",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Usa papas cocidas y frías (almidón resistente). Aliña con yogurt griego, mostaza dijon, eneldo y pepinillos.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511892"
+    },
+    {
+      "id": "1cb1c46acde",
+      "name": "Pollo A La Plancha Con \"Fideos\" De Zapallito Italiano (Zoodles)",
+      "category": "Pollo",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Pollo grillado servido sobre zoodles salteados 2 min con ajo y aceite de oliva.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511915"
+    },
+    {
+      "id": "ed4b804cd4f",
+      "name": "\"Arroz\" De Coliflor Frito",
+      "category": "Arroz",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Ralla coliflor (o compra el arroz hecho). Saltea con aceite de sésamo, salsa de soya (baja en sodio), jengibre. Acompañalo como si fuera arroz",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511942"
+    },
+    {
+      "id": "32423face7c",
+      "name": "Salmón Al Horno Con Espárragos",
+      "category": "Pescado",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Coloca el salmón y los espárragos en una bandeja. Rocía con aceite de oliva, limón, sal y eneldo. Hornea 12-15 min. =",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.511967"
+    },
+    {
+      "id": "d8598141c00",
+      "name": "Lomo Saltado",
+      "category": "Otro",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Corta lomo de vacuno en tiras y saltéalas a fuego muy alto en un wok o sartén. Añade cebolla morada y tomate en gajos gruesos, salsa de soya y un toque de vinagre. Saltea 1-2 minutos más y sirve de inmediato.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512003"
+    },
+    {
+      "id": "bc8b5e1fe9b",
+      "name": "Plateada Al Jugo Con Ensalada De Apio Y Palta",
+      "category": "Ensalada",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Sella la plateada por todos lados. Cocínala lentamente (horno u olla) en caldo y vino tinto por 2-3 horas hasta que esté muy blanda. Sirve un trozo con su jugo y una ensalada de apio picado fino con palta en cubos.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512056"
+    },
+    {
+      "id": "7cdfc7d5eb2",
+      "name": "Rollo De Carne Relleno De Huevo Duro",
+      "category": "Otro",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Aliña carne molida cruda y extiéndela sobre plástico film. Coloca 2-3 huevos duros cocidos en fila en el centro. Enrolla la carne formando un cilindro (ayúdate del plástico). Hornea a 180°C (350°F) por 35-40 minutos.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512098"
+    },
+    {
+      "id": "9adfe1a3b67",
+      "name": "Tomates Rellenos Con Pino De Carne Y Queso Gratinado",
+      "category": "Otro",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Prepara un \"pino\" (sofrito de carne molida con cebolla y aliños). Ahueca unos tomates maduros y rellénalos con el pino. Cubre con queso rallado y gratina al horno hasta que el tomate esté cocido.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512139"
+    },
+    {
+      "id": "82f7070fd46",
+      "name": "Hamburguesa Casera Envuelta En Lechuga",
+      "category": "Otro",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Cocina la hamburguesa a la plancha. En lugar de pan, envuélvela en hojas grandes y firmes de lechuga (costina o iceberg), añadiendo queso, tomate y mayonesa si deseas.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512177"
+    },
+    {
+      "id": "bf91e376639",
+      "name": "Ensalada De Hojas Verdes Con Trozos De Bistec A La Plancha",
+      "category": "Ensalada",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Prepara una base de lechuga, rúcula y espinaca. Cocina un bistec a la plancha, déjalo reposar 2 minutos y córtalo en tiras. Sirve las tiras (calientes o frías) sobre la ensalada.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512220"
+    },
+    {
+      "id": "447a486b368",
+      "name": "Chuletas De Chancho Al Horno Con Puré De Coliflor",
+      "category": "Verduras",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Sazona las chuletas de cerdo y ponlas en una fuente para horno. Hornea a 180°C (350°F) por 20-25 minutos. Sirve con coliflor cocida y molida con mantequilla y sal (en reemplazo del puré de papas).",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512255"
+    },
+    {
+      "id": "69605ba7ef9",
+      "name": "Lomo De Chancho En Trozos, Salteado Con Pimentones",
+      "category": "Otro",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Corta lomo de cerdo en cubos y saltéalos en un wok o sartén caliente. Cuando estén dorados, añade tiras de pimentón (morrón) de colores y saltea hasta que el pimentón esté tierno.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512288"
+    },
+    {
+      "id": "4c424c626e3",
+      "name": "Costillar De Chancho Al Horno Con Una Ensalada",
+      "category": "Ensalada",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Sazona un costillar con sal, pimienta y (opcional) mostaza. Hornéalo a temperatura media-baja (160°C) por 1.5- 2 horas para que quede tierno. Sube el fuego al final para dorar la superficie. Sirve con una ensalada fresca.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512324"
+    },
+    {
+      "id": "487f4ff9e63",
+      "name": "Pollo A La Plancha Con Una Ensalada Grande De Hojas Verdes",
+      "category": "Pollo",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Sazona una pechuga de pollo y cocínala en una sartén o plancha caliente hasta que esté dorada y cocida por dentro. Sírvela (entera o en tiras) sobre un gran bol de lechuga, rúcula y espinaca.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512356"
+    },
+    {
+      "id": "7b95980625b",
+      "name": "Tutos De Pollo Asados Con Piel, Acompañados De Ensalada",
+      "category": "Pollo",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Sazona tutos (muslos) de pollo con piel (con sal, pimienta, orégano, limón). Hornéalos a 200°C (400°F) por 35-40 minutos, hasta que la piel esté dorada y crujiente. Sirve con ensalada. =",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512387"
+    },
+    {
+      "id": "0917da7d00c",
+      "name": "Camarones Al Pil Pil",
+      "category": "Otro",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "En una paila (idealmente de greda), calienta abundante aceite de oliva con ajo laminado y ají cacho de cabra. Cuando el ajo empiece a dorarse, añade los camarones (pelados) y cocina 3-5 minutos hasta que estén rosados.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512419"
+    },
+    {
+      "id": "b8aa7f37052",
+      "name": "Salteado De Mariscos Con Un Toque De Vino Blanco",
+      "category": "Otro",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Calienta aceite de oliva y ajo en una sartén. Añade un mix de mariscos (camarones, calamares, choritos) y saltea a fuego alto. Añade un chorrito de vino blanco y perejil picado. Cocina 3-5 minutos.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512452"
+    },
+    {
+      "id": "ad9be994a23",
+      "name": "Choritos Al Vapor Con Limón",
+      "category": "Pescado",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Limpia bien los choritos (mejillones). Ponlos en una olla grande con un dedo de agua o vino blanco. Tapa y cocina a fuego alto 5-7 minutos, hasta que todas las conchas se hayan abierto. Sirve inmediatamente con limón.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512519"
+    },
+    {
+      "id": "b5b7c0ab54e",
+      "name": "Budín De Zapallo Italiano Con Queso Gratinado",
+      "category": "Verduras",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Ralla zapallo italiano crudo y estruja para quitar el exceso de agua. Mézclalo en un bol con huevos batidos, leche. Pon en una fuente para horno y hornea 30 min. Cubre con queso rallado y gratina",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512552"
+    },
+    {
+      "id": "e93c8a9b28a",
+      "name": "Sopa De Verduras",
+      "category": "Otro",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Haz un sofrito de cebolla, ajo y pimentón. Añade caldo de verduras y verduras picadas (apio, zapallo italiano, pimentón, espinaca, papa). Hierve 15-20 minutos hasta que todo esté tierno.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512582"
+    },
+    {
+      "id": "63048706a4e",
+      "name": "Crema De Champiñones",
+      "category": "Verduras",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Sofríe cebolla y ajo. Añade champiñones laminados y cocina hasta que suelten su líquido. Cubre con caldo de verduras y hierve 15 min. Licúa todo con un chorrito de leche hasta que esté suave.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512613"
+    },
+    {
+      "id": "ec2291a281c",
+      "name": "Espárragos Asados Con Salsa",
+      "category": "Verduras",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "toma un puñado de espárragos y ponlos en la bandeja de horno o air fryer. Agrega una salsa de aminos de coco, un chorrito de tahini y sal. hornea a 200°C (400°F) por 15-20 minutos, hasta que esten dorados",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512656"
+    },
+    {
+      "id": "8b3d192bf8e",
+      "name": "Rollitos De Zapallo Italiano Rellenos De Ricota Y Espinaca",
+      "category": "Verduras",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Corta láminas finas de zapallo italiano (a lo largo). Blanquea 1 min en agua hirviendo. Rellena con una mezcla de queso ricota, espinaca cocida y queso parmesano. Enrolla y ponlos en una fuente con salsa de tomate (sin azúcar) y queso. Hornea.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512694"
+    },
+    {
+      "id": "9075d2cddad",
+      "name": "Carpaccio De Zapallito Italiano",
+      "category": "Verduras",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Corta un zapallo italiano crudo en láminas extra finas (con mandolina). Distribúyelas en un plato. Aliña con aceite de oliva, jugo de limón, alcaparras y láminas de queso parmesano.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512726"
+    },
+    {
+      "id": "1d74aeb5d59",
+      "name": "Chupe De Palmitos",
+      "category": "Otro",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Sofríe cebolla y pimentón. Añade palmitos picados en cubos, leche y queso rayado o levadura nutricional. Pon la mezcla en pailas de greda, cubre con queso rallado y gratina al horno hasta dorar.",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512767"
+    },
+    {
+      "id": "ae6e0559676",
+      "name": "Anticuchos De Vacuno O Pollo Con Ensalada",
+      "category": "Pollo",
+      "servings": 2,
+      "ingredients": [],
+      "preparation": "Inserta trozos de carne (vacuno o pollo) intercalados con cebolla y pimentón en palos de brocheta. Ásalos a la parrilla o sartén grande, pincelando con salmuera y aliños. Sirve con ensalada. =",
+      "notes": "",
+      "createdAt": "2026-03-21T11:24:21.512818"
+    }
+  ],
+  "categories": [
+    "Verduras",
+    "Desayuno",
+    "Carne",
+    "Pollo",
+    "Pescado",
+    "Legumbres",
+    "Pasta",
+    "Arroz",
+    "Ensalada",
+    "Sopa",
+    "Snack",
+    "Postre",
+    "Otro"
+  ]
+}
