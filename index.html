@@ -512,102 +512,36 @@
   /* DIVIDER */
   .divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
 
-  /* ======= MOBILE DAY CARDS ======= */
-  .mobile-planner { display: none; }
-  .mobile-day-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    margin-bottom: 10px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-  }
-  .mobile-day-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
+  /* Mobile: horizontal scroll for planner */
+  .planner-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  /* Monthly view: days from other months */
+  .grid-cell.other-month { background: var(--bg); opacity: 0.5; pointer-events: none; }
+
+  /* Autocomplete suggestions in "Nueva Comida" */
+  .meal-autocomplete { position: relative; }
+  .meal-suggestions {
+    display: none;
+    margin-top: 4px;
     background: var(--bg2);
-    border-bottom: 1px solid var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
   }
-  .mobile-day-name {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-mid);
-  }
-  .mobile-day-num {
-    font-family: var(--font-title);
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1;
-  }
-  .mobile-day-header.today .mobile-day-name { color: var(--primary); }
-  .mobile-day-header.today .mobile-day-num {
-    background: var(--primary);
-    color: white;
-    border-radius: 50%;
-    width: 36px; height: 36px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.05rem;
-  }
-  .mobile-slot-row {
-    display: flex;
-    align-items: stretch;
-    border-bottom: 1px solid var(--border);
-    min-height: 52px;
-  }
-  .mobile-slot-row:last-child { border-bottom: none; }
-  .mobile-slot-label {
-    width: 88px;
-    flex-shrink: 0;
-    padding: 10px 12px;
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: var(--text-mid);
-    background: var(--bg);
-    border-right: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-  }
-  .mobile-slot-cell {
-    flex: 1;
-    padding: 10px 12px;
+  .meal-suggestions.open { display: block; }
+  .meal-suggestion-item {
+    padding: 10px 14px;
     cursor: pointer;
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    transition: background 0.15s;
+    transition: background 0.12s;
   }
-  .mobile-slot-cell:hover { background: var(--primary-light); }
-  .mobile-slot-cell-name {
-    font-family: var(--font-title);
-    font-size: 0.98rem;
-    color: var(--text);
-    line-height: 1.3;
-    flex: 1;
-  }
-  .mobile-slot-empty {
-    color: var(--text-light);
-    font-size: 0.8rem;
-    font-style: italic;
-  }
-  .mobile-cell-remove {
-    background: none;
-    border: none;
-    color: var(--text-light);
-    font-size: 0.75rem;
-    cursor: pointer;
-    padding: 2px 4px;
-    border-radius: 4px;
-    flex-shrink: 0;
-  }
-  .mobile-cell-remove:hover { color: var(--danger); background: #fff0ee; }
+  .meal-suggestion-item:last-child { border-bottom: none; }
+  .meal-suggestion-item:hover { background: var(--primary-light); }
+  .sug-name { font-size: 0.9rem; color: var(--text); font-family: var(--font-title); }
+  .sug-cat { font-size: 0.7rem; color: var(--text-light); letter-spacing: 0.04em; }
 
   @media (max-width: 600px) {
     .header h1 { font-size: 1.4rem; }
@@ -617,9 +551,6 @@
     .meal-item-actions { margin-left: 0; }
     .header p { display: none; }
   }
-  /* JS-controlled mobile toggle (more reliable than CSS-only in iframes) */
-  .is-mobile .planner-wrapper { display: none !important; }
-  .is-mobile .mobile-planner  { display: block !important; }
 </style>
 </head>
 <body>
@@ -689,8 +620,6 @@
     <div class="planner-wrapper">
       <div id="plannerGrid" class="planner-grid week-grid"></div>
     </div>
-    <!-- Vista mobile: tarjetas por día -->
-    <div class="mobile-planner" id="mobilePlanner"></div>
     <div id="exportFooter" style="display:none;padding:10px 20px;background:var(--bg2);border-top:1px solid var(--border);text-align:center;">
       <span style="font-family:'Cormorant Garamond',serif;font-size:0.85rem;color:#a89990;letter-spacing:0.06em;">www.RevolucionSaludable.com</span>
     </div>
@@ -833,7 +762,10 @@
     <div id="panel-new" style="display:none;">
       <div class="form-group">
         <label>Nombre *</label>
-        <input type="text" id="quickMealName" placeholder="Ej: Lentejas con arroz">
+        <div class="meal-autocomplete" style="position:relative;">
+          <input type="text" id="quickMealName" placeholder="Ej: Lentejas con arroz" oninput="filterMealSuggestions(this.value)" autocomplete="off">
+          <div class="meal-suggestions" id="mealSuggestions"></div>
+        </div>
       </div>
       <div class="form-group">
         <label>Categoría *</label>
@@ -911,11 +843,35 @@ function save() {
 }
 function load() {
   try {
-    const s = localStorage.getItem('miMenu_v2');
-    if (s) state = { ...state, ...JSON.parse(s) };
+    // Try loading from current key first
+    let s = localStorage.getItem('miMenu_v2');
+    if (s) {
+      const parsed = JSON.parse(s);
+      state = { ...state, ...parsed };
+    }
+    // If no meals found, try fallback keys from older versions
+    if (!state.meals || state.meals.length === 0) {
+      const fallbackKeys = ['miMenu_v4', 'miMenu_v3', 'miMenu_v1', 'miMenu'];
+      for (const key of fallbackKeys) {
+        const fb = localStorage.getItem(key);
+        if (fb) {
+          try {
+            const parsed = JSON.parse(fb);
+            if (parsed.meals && parsed.meals.length > 0) {
+              state = { ...state, ...parsed };
+              // Migrate to current key
+              localStorage.setItem('miMenu_v2', JSON.stringify(state));
+              break;
+            }
+          } catch(e2) {}
+        }
+      }
+    }
   } catch(e){}
-  if (!state.mealSlots.length) state.mealSlots = [...DEFAULT_SLOTS];
-  if (!state.categories.length) state.categories = [...DEFAULT_CATS];
+  if (!state.mealSlots || !state.mealSlots.length) state.mealSlots = [...DEFAULT_SLOTS];
+  if (!state.categories || !state.categories.length) state.categories = [...DEFAULT_CATS];
+  if (!state.plan) state.plan = {};
+  if (!state.shoppingChecked) state.shoppingChecked = {};
 }
 
 // ---- UTILS ----
@@ -943,7 +899,12 @@ function showSection(name) {
   if (name === 'history') renderMealList();
   if (name === 'config') renderConfig();
 }
-function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+function closeModal(id) {
+  document.getElementById(id).classList.remove('active');
+  // Close any open autocomplete
+  const sug = document.getElementById('mealSuggestions');
+  if (sug) sug.classList.remove('open');
+}
 
 // ---- COLLAPSIBLE ----
 function toggleCollapsible(key) {
@@ -1242,76 +1203,105 @@ function setPlannerView(view) {
   plannerView = view;
   document.getElementById('btn-view-week').classList.toggle('active-view', view==='week');
   document.getElementById('btn-view-month').classList.toggle('active-view', view==='month');
+  if (view === 'month') {
+    // Always start monthly view at the 1st of the current month
+    const now = new Date();
+    currentWeekStart = new Date(now.getFullYear(), now.getMonth(), 1);
+  }
   renderPlanner();
 }
 
 function changeWeek(dir) {
-  const days = plannerView === 'week' ? 7 : 28;
-  currentWeekStart = new Date(currentWeekStart.getTime() + dir * days * 86400000);
+  if (plannerView === 'week') {
+    currentWeekStart = new Date(currentWeekStart.getTime() + dir * 7 * 86400000);
+  } else {
+    // Navigate to previous/next month's 1st
+    const d = new Date(currentWeekStart);
+    d.setDate(1);
+    d.setMonth(d.getMonth() + dir);
+    currentWeekStart = d;
+  }
   renderPlanner();
 }
 
 function renderPlanner() {
-  const numDays = plannerView === 'week' ? 7 : 28;
-  const end = new Date(currentWeekStart.getTime() + (numDays-1)*86400000);
-
-  // Label
-  if (plannerView === 'week') {
-    const s = currentWeekStart, e = end;
-    document.getElementById('weekLabel').textContent =
-      `${s.getDate()} ${MONTHS_ES[s.getMonth()].slice(0,3)} — ${e.getDate()} ${MONTHS_ES[e.getMonth()].slice(0,3)} ${e.getFullYear()}`;
-  } else {
-    document.getElementById('weekLabel').textContent =
-      `${MONTHS_ES[currentWeekStart.getMonth()]} ${currentWeekStart.getFullYear()}`;
-  }
-
   const grid = document.getElementById('plannerGrid');
   const slots = state.mealSlots;
-  const cols = numDays > 7 ? 7 : numDays;
-
-  grid.className = 'planner-grid';
-  grid.style.gridTemplateColumns = `90px repeat(${cols}, 1fr)`;
+  const isMonth = plannerView === 'month';
 
   // Build date array
-  const dates = [];
-  for (let i = 0; i < numDays; i++) {
-    dates.push(new Date(currentWeekStart.getTime() + i*86400000));
+  let dates = [];
+  let currentMonthDates = new Set(); // track which dates belong to current month
+
+  if (isMonth) {
+    const year = currentWeekStart.getFullYear();
+    const month = currentWeekStart.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+
+    // Monday-based padding: Mon=0 ... Sun=6
+    const firstDow = firstDay.getDay(); // 0=Sun,1=Mon,...,6=Sat
+    const padStart = firstDow === 0 ? 6 : firstDow - 1;
+
+    for (let i = padStart; i > 0; i--)
+      dates.push(new Date(year, month, 1 - i));
+
+    for (let i = 1; i <= lastDay.getDate(); i++) {
+      const d = new Date(year, month, i);
+      dates.push(d);
+      currentMonthDates.add(dateKey(d));
+    }
+
+    // Pad to fill last week
+    const rem = dates.length % 7;
+    if (rem > 0) {
+      for (let i = 1; i <= 7 - rem; i++)
+        dates.push(new Date(year, month + 1, i));
+    }
+
+    document.getElementById('weekLabel').textContent =
+      `${MONTHS_ES[month]} ${year}`;
+  } else {
+    for (let i = 0; i < 7; i++)
+      dates.push(new Date(currentWeekStart.getTime() + i * 86400000));
+    const s = dates[0], e = dates[6];
+    document.getElementById('weekLabel').textContent =
+      `${s.getDate()} ${MONTHS_ES[s.getMonth()].slice(0,3)} — ${e.getDate()} ${MONTHS_ES[e.getMonth()].slice(0,3)} ${e.getFullYear()}`;
   }
 
-  // For monthly view, group into rows of 7
+  // Group into weeks of 7
   const weeks = [];
-  if (numDays <= 7) {
-    weeks.push(dates);
-  } else {
-    for (let i = 0; i < dates.length; i += 7) weeks.push(dates.slice(i, i+7));
-  }
+  for (let i = 0; i < dates.length; i += 7) weeks.push(dates.slice(i, i + 7));
+
+  grid.className = 'planner-grid';
+  grid.style.gridTemplateColumns = `90px repeat(7, 1fr)`;
 
   let html = '';
 
-  weeks.forEach((weekDates, weekIdx) => {
+  weeks.forEach(weekDates => {
     // Header row
-    if (weekIdx === 0 || numDays > 7) {
-      html += `<div class="grid-header-corner"></div>`;
-      weekDates.forEach(d => {
-        const isToday = dateKey(d) === todayKey();
-        html += `<div class="grid-day-header ${isToday?'today':''}">
-          <div class="grid-day-name">${DAYS_ES[d.getDay()]}</div>
-          ${isToday
-            ? `<div class="grid-day-date" style="background:var(--primary);color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;margin:4px auto 0;font-size:0.95rem;">${d.getDate()}</div>`
-            : `<div class="grid-day-date">${d.getDate()}</div>`
-          }
-        </div>`;
-      });
-    }
+    html += `<div class="grid-header-corner"></div>`;
+    weekDates.forEach(d => {
+      const isToday = dateKey(d) === todayKey();
+      const isOtherMonth = isMonth && !currentMonthDates.has(dateKey(d));
+      html += `<div class="grid-day-header ${isToday?'today':''}" style="${isOtherMonth?'opacity:0.4;':''}">
+        <div class="grid-day-name">${DAYS_ES[d.getDay()]}</div>
+        ${isToday
+          ? `<div class="grid-day-date" style="background:var(--primary);color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;margin:4px auto 0;font-size:0.95rem;">${d.getDate()}</div>`
+          : `<div class="grid-day-date">${d.getDate()}</div>`
+        }
+      </div>`;
+    });
 
     // Slot rows
     slots.forEach(slot => {
       html += `<div class="grid-slot-label">${slot}</div>`;
       weekDates.forEach(d => {
         const dk = dateKey(d);
+        const isOtherMonth = isMonth && !currentMonthDates.has(dk);
         const mealId = state.plan[dk]?.[slot];
         const meal = mealId ? state.meals.find(m => m.id === mealId) : null;
-        html += `<div class="grid-cell" onclick="openSlotSelector('${dk}','${slot}')">
+        html += `<div class="grid-cell${isOtherMonth?' other-month':''}" onclick="openSlotSelector('${dk}','${slot}')">
           ${meal
             ? `<div class="grid-cell-content">${meal.name}</div><button class="cell-remove" onclick="event.stopPropagation();removeFromPlan('${dk}','${slot}')">✕</button>`
             : `<span class="grid-cell-empty">+</span>`
@@ -1321,43 +1311,7 @@ function renderPlanner() {
     });
   });
 
-  // ── Mobile card view (one card per day) ──────────────────
-  let mobileHtml = '';
-  // For monthly view on mobile we just use week 0 rows as cards
-  const allDates = weeks.flat();
-  allDates.forEach(d => {
-    const dk = dateKey(d);
-    const isToday = dk === todayKey();
-    mobileHtml += `<div class="mobile-day-card">
-      <div class="mobile-day-header${isToday?' today':''}">
-        <span class="mobile-day-name">${DAYS_ES[d.getDay()]}</span>
-        <span class="mobile-day-num">${d.getDate()}</span>
-      </div>`;
-    slots.forEach(slot => {
-      const mealId = state.plan[dk]?.[slot];
-      const meal = mealId ? state.meals.find(m => m.id === mealId) : null;
-      mobileHtml += `<div class="mobile-slot-row">
-        <div class="mobile-slot-label">${slot}</div>
-        <div class="mobile-slot-cell" onclick="openSlotSelector('${dk}','${slot}')">
-          ${meal
-            ? `<span class="mobile-slot-cell-name">${meal.name}</span>
-               <button class="mobile-cell-remove" onclick="event.stopPropagation();removeFromPlan('${dk}','${slot}')">✕</button>`
-            : `<span class="mobile-slot-empty">Toca para agregar</span>`
-          }
-        </div>
-      </div>`;
-    });
-    mobileHtml += `</div>`;
-  });
-  document.getElementById('mobilePlanner').innerHTML = mobileHtml;
   grid.innerHTML = html;
-  applyMobileLayout();
-}
-
-function applyMobileLayout() {
-  // Detect mobile using screen.width (reliable even inside Wix iframes)
-  const mobile = (window.screen ? window.screen.width : window.innerWidth) <= 640;
-  document.body.classList.toggle('is-mobile', mobile);
 }
 
 function openSlotSelector(dk, slot) {
@@ -1458,6 +1412,30 @@ function saveQuickMeal() {
   closeModal('modalSelectMeal');
   renderPlanner();
   showToast(`"${name}" guardada en historial y agregada al menú ✓`);
+}
+
+function filterMealSuggestions(q) {
+  const sug = document.getElementById('mealSuggestions');
+  q = (q || '').toLowerCase().trim();
+  if (!q || q.length < 1) { sug.classList.remove('open'); return; }
+  const matches = state.meals.filter(m =>
+    m.name.toLowerCase().includes(q) ||
+    (m.ingredients||[]).some(i => i.name.toLowerCase().includes(q))
+  ).slice(0, 6);
+  if (!matches.length) { sug.classList.remove('open'); return; }
+  sug.innerHTML = matches.map(m =>
+    `<div class="meal-suggestion-item" onclick="pickSuggestion('${m.id}')">
+      <span class="sug-name">${m.name}</span>
+      <span class="sug-cat">${m.category} · del historial</span>
+    </div>`
+  ).join('');
+  sug.classList.add('open');
+}
+
+function pickSuggestion(mealId) {
+  document.getElementById('mealSuggestions').classList.remove('open');
+  // Assign directly to the slot from history (no need to re-save)
+  selectMeal(mealId);
 }
 
 function renderMealSelector() {
@@ -1698,8 +1676,14 @@ load();
 renderMealList();
 renderConfig();
 renderPlanner();
-applyMobileLayout();
-window.addEventListener('resize', applyMobileLayout);
+// Close autocomplete when clicking outside
+document.addEventListener('click', e => {
+  const ac = document.querySelector('.meal-autocomplete');
+  if (ac && !ac.contains(e.target)) {
+    const sug = document.getElementById('mealSuggestions');
+    if (sug) sug.classList.remove('open');
+  }
+});
 document.getElementById('newSlotName').addEventListener('keypress', e => { if(e.key==='Enter') addMealSlot(); });
 document.getElementById('newCategoryName').addEventListener('keypress', e => { if(e.key==='Enter') addCategory(); });
 </script>
