@@ -615,10 +615,11 @@
     .nav-tab { font-size: 0.65rem; }
     .meal-item { flex-wrap: wrap; gap: 8px; }
     .meal-item-actions { margin-left: 0; }
-    /* Show card view, hide scroll grid */
-    .planner-wrapper { display: none; }
-    .mobile-planner { display: block; }
+    .header p { display: none; }
   }
+  /* JS-controlled mobile toggle (more reliable than CSS-only in iframes) */
+  .is-mobile .planner-wrapper { display: none !important; }
+  .is-mobile .mobile-planner  { display: block !important; }
 </style>
 </head>
 <body>
@@ -1349,17 +1350,41 @@ function renderPlanner() {
     mobileHtml += `</div>`;
   });
   document.getElementById('mobilePlanner').innerHTML = mobileHtml;
-
   grid.innerHTML = html;
+  applyMobileLayout();
+}
+
+function applyMobileLayout() {
+  // Detect mobile using screen.width (reliable even inside Wix iframes)
+  const mobile = (window.screen ? window.screen.width : window.innerWidth) <= 640;
+  document.body.classList.toggle('is-mobile', mobile);
 }
 
 function openSlotSelector(dk, slot) {
   selectedSlotKey = { date: dk, slot };
   document.getElementById('searchMealSelector').value = '';
   // Open on "Nueva Comida" tab by default
-  switchSelectorTab('new');
+  // Always open on "Nueva Comida" tab — set display directly to be safe
+  document.getElementById('panel-history').style.display = 'none';
+  document.getElementById('panel-new').style.display = 'block';
+  document.getElementById('btnSaveQuickMeal').style.display = 'inline-flex';
+  document.getElementById('tab-history').style.borderBottomColor = 'transparent';
+  document.getElementById('tab-history').style.color = 'var(--text-light)';
+  document.getElementById('tab-history').style.fontWeight = '500';
+  document.getElementById('tab-new').style.borderBottomColor = 'var(--primary)';
+  document.getElementById('tab-new').style.color = 'var(--primary)';
+  document.getElementById('tab-new').style.fontWeight = '600';
+  // Populate category select and reset fields
+  const sel = document.getElementById('quickMealCategory');
+  sel.innerHTML = state.categories.map(c => `<option value="${c}">${c}</option>`).join('');
+  document.getElementById('quickMealName').value = '';
+  document.getElementById('quickMealPrep').value = '';
+  document.getElementById('quickIngredientsList').innerHTML = '';
+  document.getElementById('collapse-quickIngredients').classList.remove('open');
+  document.getElementById('toggleQuickIngredients').classList.remove('open');
   renderMealSelector();
   document.getElementById('modalSelectMeal').classList.add('active');
+  setTimeout(() => document.getElementById('quickMealName').focus(), 150);
 }
 
 function switchSelectorTab(tab) {
@@ -1568,62 +1593,104 @@ function confirmClearAll() {
 
 // ---- EXPORT AS IMAGE ----
 function exportMenuAsImage() {
-  const label = document.getElementById('weekLabel').textContent;
-  document.getElementById('exportWeekLabel').textContent = label;
-
-  // Show header/footer for export
-  document.getElementById('exportHeader').style.display = 'block';
-  document.getElementById('exportFooter').style.display = 'block';
-
-  // ── Expand wrapper so html2canvas captures the full grid ──
-  const wrapper = document.querySelector('.planner-wrapper');
-  const target  = document.getElementById('exportTarget');
-  const grid    = document.getElementById('plannerGrid');
-
-  // Save original styles
-  const origWrapperDisplay  = wrapper.style.display;
-  const origWrapperOverflow = wrapper.style.overflow;
-  const origWrapperWidth    = wrapper.style.width;
-  const origTargetWidth     = target.style.width;
-
-  // Force full-width visibility (show grid even on mobile)
-  wrapper.style.display  = 'block';
-  wrapper.style.overflow = 'visible';
-  const fullWidth = Math.max(grid.scrollWidth, 650);
-  wrapper.style.width = fullWidth + 'px';
-  target.style.width  = fullWidth + 'px';
+  const label   = document.getElementById('weekLabel').textContent;
+  const slots   = state.mealSlots;
+  const numDays = plannerView === 'week' ? 7 : 28;
+  const EXPORT_W = 900;
 
   showToast('Generando imagen...');
 
-  const restore = () => {
-    wrapper.style.display  = origWrapperDisplay;
-    wrapper.style.overflow = origWrapperOverflow;
-    wrapper.style.width    = origWrapperWidth;
-    target.style.width     = origTargetWidth;
-    document.getElementById('exportHeader').style.display = 'none';
-    document.getElementById('exportFooter').style.display = 'none';
-  };
+  // Build dates for current view
+  const dates = [];
+  for (let i = 0; i < numDays; i++)
+    dates.push(new Date(currentWeekStart.getTime() + i * 86400000));
 
-  html2canvas(target, {
-    backgroundColor: '#f9f5f2',
-    scale: 2,
-    useCORS: true,
-    allowTaint: true,
-    logging: false,
-    width:  fullWidth,
-    height: target.scrollHeight
-  }).then(canvas => {
-    restore();
-    const link = document.createElement('a');
-    const weekSlug = label.replace(/[^a-z0-9]/gi, '-').toLowerCase();
-    link.download = `menu-${weekSlug}.jpg`;
-    link.href = canvas.toDataURL('image/jpeg', 0.92);
-    link.click();
-    showToast('Imagen descargada ✓');
-  }).catch(() => {
-    restore();
-    showToast('Error al generar imagen');
+  // Weekly groups
+  const weeks = numDays <= 7 ? [dates] :
+    Array.from({ length: Math.ceil(dates.length / 7) }, (_, i) => dates.slice(i*7, i*7+7));
+
+  // ── Build a self-contained off-screen div at fixed width ──
+  const wrap = document.createElement('div');
+  wrap.style.cssText = `
+    position:absolute; left:-9999px; top:0;
+    width:${EXPORT_W}px; background:#f9f5f2;
+    font-family:'Jost',system-ui,sans-serif;
+    color:#3b2e28;
+  `;
+
+  // Header
+  wrap.innerHTML = `
+    <div style="background:#f2ebe4;border-bottom:1px solid #e5d8d0;padding:16px 24px;text-align:center;">
+      <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.6rem;font-weight:600;letter-spacing:0.04em;">Mi Menú</div>
+      <div style="font-size:0.7rem;color:#a89990;letter-spacing:0.08em;text-transform:uppercase;margin-top:3px;">${label}</div>
+    </div>`;
+
+  // Grid (one week or multiple rows for monthly)
+  weeks.forEach(weekDates => {
+    const cols = weekDates.length;
+    const labelW = 88;
+    const cellW  = Math.floor((EXPORT_W - labelW) / cols);
+
+    let gridHtml = `<div style="display:grid;grid-template-columns:${labelW}px repeat(${cols},1fr);border-bottom:1px solid #e5d8d0;">`;
+
+    // Day headers
+    gridHtml += `<div style="background:#f2ebe4;border-right:1px solid #e5d8d0;border-bottom:1px solid #e5d8d0;"></div>`;
+    weekDates.forEach(d => {
+      const isToday = dateKey(d) === todayKey();
+      const dayName = DAYS_ES[d.getDay()];
+      const dayNum  = d.getDate();
+      gridHtml += `<div style="background:#f2ebe4;border-right:1px solid #e5d8d0;border-bottom:1px solid #e5d8d0;padding:8px 4px;text-align:center;">
+        <div style="font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:${isToday?'#9e7b6b':'#7a6860'};">${dayName}</div>
+        <div style="${isToday?'background:#9e7b6b;color:white;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;margin-top:3px;font-size:0.9rem;':'font-family:Cormorant Garamond,Georgia,serif;font-size:1rem;margin-top:2px;color:#3b2e28;'}">${dayNum}</div>
+      </div>`;
+    });
+
+    // Slot rows
+    slots.forEach(slot => {
+      gridHtml += `<div style="background:#f9f5f2;border-right:1px solid #e5d8d0;border-bottom:1px solid #e5d8d0;padding:8px;font-size:0.6rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:#7a6860;display:flex;align-items:center;">${slot}</div>`;
+      weekDates.forEach(d => {
+        const dk     = dateKey(d);
+        const mealId = state.plan[dk]?.[slot];
+        const meal   = mealId ? state.meals.find(m => m.id === mealId) : null;
+        gridHtml += `<div style="border-right:1px solid #e5d8d0;border-bottom:1px solid #e5d8d0;padding:7px 5px;min-height:54px;text-align:center;display:flex;align-items:center;justify-content:center;background:#fff;">
+          ${meal ? `<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:0.88rem;line-height:1.3;color:#3b2e28;">${meal.name}</span>`
+                 : `<span style="color:#a89990;font-size:0.75rem;">+</span>`}
+        </div>`;
+      });
+    });
+    gridHtml += `</div>`;
+    wrap.innerHTML += gridHtml;
   });
+
+  // Footer
+  wrap.innerHTML += `<div style="background:#f2ebe4;border-top:1px solid #e5d8d0;padding:10px 24px;text-align:center;">
+    <span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:0.8rem;color:#a89990;letter-spacing:0.06em;">www.RevolucionSaludable.com</span>
+  </div>`;
+
+  document.body.appendChild(wrap);
+
+  // Small delay to allow fonts to render
+  setTimeout(() => {
+    html2canvas(wrap, {
+      backgroundColor: '#f9f5f2',
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      logging: false,
+      width:  EXPORT_W,
+      height: wrap.scrollHeight
+    }).then(canvas => {
+      document.body.removeChild(wrap);
+      const link = document.createElement('a');
+      link.download = `menu-${label.replace(/[^a-z0-9]/gi,'-').toLowerCase()}.jpg`;
+      link.href = canvas.toDataURL('image/jpeg', 0.92);
+      link.click();
+      showToast('Imagen descargada ✓');
+    }).catch(() => {
+      document.body.removeChild(wrap);
+      showToast('Error al generar imagen');
+    });
+  }, 200);
 }
 
 // ---- INIT ----
@@ -1631,6 +1698,8 @@ load();
 renderMealList();
 renderConfig();
 renderPlanner();
+applyMobileLayout();
+window.addEventListener('resize', applyMobileLayout);
 document.getElementById('newSlotName').addEventListener('keypress', e => { if(e.key==='Enter') addMealSlot(); });
 document.getElementById('newCategoryName').addEventListener('keypress', e => { if(e.key==='Enter') addCategory(); });
 </script>
