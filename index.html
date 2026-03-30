@@ -748,7 +748,14 @@ function showLoginPopup(){
   document.getElementById('loginOverlay').classList.add('active');
 }
 function checkLogin(){
-  if(S.userEmail) return; // already logged in
+  if(S.userEmail) return; // already logged in on this device
+  // If this device has no local data, always show login popup
+  // (even if cookie exists, the user must confirm on a new device)
+  const hasLocalData = storageOk() && !!localStorage.getItem(STORE_KEY);
+  if(!hasLocalData){
+    showLoginPopup();
+    return;
+  }
   // Try cookie email → auto-restore from cloud silently
   const cookieEmail=getEmailCookie();
   if(cookieEmail && db){
@@ -758,13 +765,12 @@ function checkLogin(){
         S={...S,...cloudData,userEmail:cookieEmail,userName:name};
         if(storageOk()){try{localStorage.setItem(STORE_KEY,JSON.stringify(S));}catch(e){}}
         renderMeals();renderConfig();renderPlanner();updateDeviceIdDisplay();
-        // No popup needed — restored silently
       } else {
-        showLoginPopup(); // cookie exists but no cloud data → ask
+        showLoginPopup();
       }
     }).catch(()=>showLoginPopup());
   } else {
-    showLoginPopup(); // no cookie → first time ever
+    showLoginPopup();
   }
 }
 async function doLogin(){
