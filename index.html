@@ -734,44 +734,50 @@ function load(){
 // ========= LOGIN =========
 // Email is used as the Firestore document key → enables cross-device sync
 // ---- Cookie helpers (survive Safari ITP better than localStorage) ----
-function saveEmailCookie(email){
-  const d=new Date(); d.setFullYear(d.getFullYear()+1);
-  document.cookie=`mmEmail=${encodeURIComponent(email)};expires=${d.toUTCString()};path=/;SameSite=Lax`;
+function saveCookie(key,val){
+  const d=new Date(); d.setFullYear(d.getFullYear()+2);
+  document.cookie=`${key}=${encodeURIComponent(val)};expires=${d.toUTCString()};path=/;SameSite=Lax`;
 }
-function getEmailCookie(){
-  const m=document.cookie.match(/(?:^|;\s*)mmEmail=([^;]+)/);
+function getCookie(key){
+  const m=document.cookie.match(new RegExp('(?:^|;\\s*)'+key+'=([^;]+)'));
   return m?decodeURIComponent(m[1]):null;
 }
+function saveEmailCookie(email){ saveCookie('mmEmail',email); }
+function saveNameCookie(name){ saveCookie('mmName',name); }
+function getEmailCookie(){ return getCookie('mmEmail'); }
+function getNameCookie(){ return getCookie('mmName'); }
 function showLoginPopup(){
   const cookieEmail=getEmailCookie();
   if(cookieEmail) document.getElementById('loginEmail').value=cookieEmail;
   document.getElementById('loginOverlay').classList.add('active');
 }
 function checkLogin(){
-  if(S.userEmail) return; // already logged in on this device
-  // If this device has no local data, always show login popup
-  // (even if cookie exists, the user must confirm on a new device)
-  const hasLocalData = storageOk() && !!localStorage.getItem(STORE_KEY);
-  if(!hasLocalData){
-    showLoginPopup();
+  // Already remembered from localStorage (same device, same browser)
+  if(S.userEmail) return;
+
+  // Check cookie (survives cache clears and works across devices)
+  const cookieEmail = getEmailCookie();
+  if(cookieEmail){
+    // Auto-login silently — no need to ask again
+    S.userEmail = cookieEmail;
+    S.userName  = getNameCookie() || '';
+    if(storageOk()) try{ localStorage.setItem(STORE_KEY, JSON.stringify(S)); }catch(e){}
+    // Sync from cloud in background
+    if(db){
+      loadFromCloud(cookieEmail).then(cloudData=>{
+        if(cloudData && cloudData.meals && cloudData.meals.length){
+          const name = cloudData.userName || S.userName || '';
+          S={...S,...cloudData,userEmail:cookieEmail,userName:name};
+          if(storageOk()) try{ localStorage.setItem(STORE_KEY,JSON.stringify(S)); }catch(e){}
+          renderMeals(); renderConfig(); renderPlanner(); updateDeviceIdDisplay();
+        }
+      }).catch(()=>{});
+    }
     return;
   }
-  // Try cookie email → auto-restore from cloud silently
-  const cookieEmail=getEmailCookie();
-  if(cookieEmail && db){
-    loadFromCloud(cookieEmail).then(cloudData=>{
-      if(cloudData && cloudData.meals && cloudData.meals.length){
-        const name=cloudData.userName||'';
-        S={...S,...cloudData,userEmail:cookieEmail,userName:name};
-        if(storageOk()){try{localStorage.setItem(STORE_KEY,JSON.stringify(S));}catch(e){}}
-        renderMeals();renderConfig();renderPlanner();updateDeviceIdDisplay();
-      } else {
-        showLoginPopup();
-      }
-    }).catch(()=>showLoginPopup());
-  } else {
-    showLoginPopup();
-  }
+
+  // No localStorage, no cookie → first time ever → ask
+  showLoginPopup();
 }
 async function doLogin(){
   const name  = document.getElementById('loginName').value.trim();
@@ -785,7 +791,8 @@ async function doLogin(){
   S.userName  = name;
 
   document.getElementById('loginOverlay').classList.remove('active');
-  saveEmailCookie(email); // persist email in cookie for auto-restore
+  saveEmailCookie(email);
+  saveNameCookie(name);
   updateDeviceIdDisplay();
 
   if(!sameUser){
