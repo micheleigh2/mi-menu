@@ -1015,23 +1015,27 @@ function changeWeek(d){
 
 function renderPlanner(){
   const num=pView==='week'?7:new Date(weekStart.getFullYear(),weekStart.getMonth()+1,0).getDate();
-  const end=new Date(weekStart.getTime()+(num-1)*86400000);
+  const end=new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate()+(num-1));
   if(pView==='week') document.getElementById('weekLabel').textContent=`${weekStart.getDate()} ${MONTHS[weekStart.getMonth()].slice(0,3)} — ${end.getDate()} ${MONTHS[end.getMonth()].slice(0,3)} ${end.getFullYear()}`;
   else document.getElementById('weekLabel').textContent=`${MONTHS[weekStart.getMonth()]} ${weekStart.getFullYear()}`;
 
   const slots=S.mealSlots;
-  const dates=Array.from({length:num},(_,i)=>new Date(weekStart.getTime()+i*86400000));
+  // Use DST-safe date constructor (avoids duplicate days during DST transitions)
+  const y=weekStart.getFullYear(), mo=weekStart.getMonth(), d=weekStart.getDate();
+  const dates=Array.from({length:num},(_,i)=>new Date(y, mo, d+i));
   // For month view: pre-pad to start from Monday (Lun→Dom order)
   if(pView==='month'){
     const firstDow=weekStart.getDay(); // 0=Sun,1=Mon...
     const prePad=(firstDow===0?6:firstDow-1);
     // Build pre-pad in chronological order then insert all at once
-    const preDates=Array.from({length:prePad},(_,i)=>new Date(weekStart.getTime()-(prePad-i)*86400000));
+    const preDates=Array.from({length:prePad},(_,i)=>new Date(y, mo, d-(prePad-i)));
     dates.unshift(...preDates);
   }
   // Pad last week with days from next month to complete the 7-day row
   const lastWkLen=dates.length%7; const pad=lastWkLen===0?0:7-lastWkLen;
-  for(let p=1;p<=pad;p++) dates.push(new Date(dates[dates.length-1].getTime()+p*86400000));
+  const lastDate=dates[dates.length-1]; // fixed reference — don't use growing array
+  const ly=lastDate.getFullYear(), lmo=lastDate.getMonth(), ld=lastDate.getDate();
+  for(let p=1;p<=pad;p++) dates.push(new Date(ly, lmo, ld+p));
   const cols=num>7?7:num;
   const grid=document.getElementById('plannerGrid');
   grid.style.gridTemplateColumns=`80px repeat(${cols},1fr)`;
